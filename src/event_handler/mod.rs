@@ -16,13 +16,11 @@ impl EventHandler for Handler {
         let mentioned = msg.mentions.iter().any(|user| user.id == constants::APP_ID);
 
         if msg.content == constants::COMMAND || mentioned {
-            let channel_id = msg.channel_id.0;
-            let messages = match get_messages(&ctx, msg.channel_id.0).await {
-                Ok(data) => data,
-                Err(_e) => Vec::new(),
-            };
+            // let channel_id = msg.channel_id.0;
+            let http = &ctx.http;
+            let messages:Vec<Message> =  get_messages(http, msg.channel_id.0).await;
 
-            println!("channel id: {}", channel_id);
+            // println!("channel id: {}", channel_id);
             println!("messages: ");
             println!("{:#?}", messages.len());
 
