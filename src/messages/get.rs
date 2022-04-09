@@ -26,7 +26,6 @@ pub async fn get_messages(http: &Arc<Http>, channel_id: u64) -> Vec<Message> {
             })
             .await
             .unwrap();
-
         
         total.extend(new_batch);
         oldest_message = total.last().unwrap();

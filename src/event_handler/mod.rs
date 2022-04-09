@@ -1,6 +1,6 @@
+use crate::constants;
 use crate::messages::get::get_messages;
 use crate::messages::process::get_leaderboard;
-use crate::constants;
 
 use serenity::{
     async_trait,
@@ -19,12 +19,10 @@ impl EventHandler for Handler {
         if msg.content == constants::COMMAND || mentioned {
             // let channel_id = msg.channel_id.0;
             let http = &ctx.http;
-            let messages:Vec<Message> =  get_messages(http, msg.channel_id.0).await;
+            let messages: Vec<Message> = get_messages(http, msg.channel_id.0).await;
             println!("messages: ");
             println!("{:#?}", &messages.len());
-            get_leaderboard(messages);
-
-            // println!("channel id: {}", channel_id);
+            let leaderboard: ()= get_leaderboard(messages);
 
             let message = message_intro.clone();
             if let Err(e) = msg.channel_id.say(&ctx.http, message).await {
