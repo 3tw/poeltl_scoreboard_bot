@@ -632,6 +632,7 @@ name = "poeltl_scoreboard_bot"
 version = "0.1.0"
 dependencies = [
  "chrono",
+ "num-traits",
  "serenity",
  "tokio",
 ]
