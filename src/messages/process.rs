@@ -66,7 +66,7 @@ fn get_players(messages: Vec<Message>) -> Vec<Player> {
             0
         };
 
-        players[index.unwrap()].score += point;
+        players[index.unwrap()].score += if point > 8 { 8 } else { point };
         players[index.unwrap()].guesses += 1;
     }
 
